@@ -1,5 +1,12 @@
 $(function () {
     /**
+     * TODO
+     * 1. валидация про потере фокуса у email
+     * 2. блок ваше имя некорректно реагирует на системные кнопки, стрелки и т.д.
+     * 3. серверная валидация
+     * 4. отправка email
+     */
+    /**
      * Cache DOM and server URL
      */
     var block = $('.contactform'),
@@ -52,7 +59,7 @@ $(function () {
         if (ready === true) {
             var data = self.serialize();
             /**
-             * @TODO send data to a server
+             * TODO send data to a server
              */
             console.log(data);
         }
