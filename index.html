@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Заказать сейчас</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300&subset=latin,cyrillic' rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+
+<!-- Add your site or application content here -->
+<div class="contactform">
+    <p class="hidden success">Спасибо за заказ</p>
+    <form>
+        <h1>Заказать сейчас</h1>
+
+        <div class="row">
+            <div class="col cols2">
+                <label>Выберите ваш город</label>
+                <input type="text" name="city" class="text cities required" autocomplete="off"/>
+            </div>
+            <div class="col cols2">
+                <label>Ваше имя</label>
+                <input type="text" name="name" class="text cyrillic required"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col cols2">
+                <label>Телефон</label>
+                <input type="text" name="phone" class="text phone required"/>
+            </div>
+            <div class="col cols2">
+                <label>Email</label>
+                <input type="text" name="email" class="text email required"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col cols1">
+                <label>Дополнительная информация</label>
+                <textarea name="message" class="textarea"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col cols1">
+                <button class="button">
+                    <span>Отправить</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
