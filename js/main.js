@@ -18,7 +18,7 @@ $(function () {
     /**
      * Allow cyrillic chars and spaces
      */
-    block.find('.cyrillic').keyup(function () {
+    block.find('.cyrillic').keyup(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
                 // Allow: Ctrl+A
@@ -50,6 +50,18 @@ $(function () {
                 ready = false;
             }
         });
+        /**
+         * Validate City
+         */
+        var cities = block.find('.cities');
+        if (cities.val().length < 1 && (typeof(cities.data('value')) === "undefined" || cities.data('value').length < 1)) {
+            console.log('city validated: false');
+            cities.addClass('error');
+            ready = false;
+        } else {
+            console.log('city validated: true');
+        }
+
 
         /**
          * Validate Email
@@ -59,6 +71,7 @@ $(function () {
             email.addClass('error');
             ready = false;
         }
+        console.log(ready);
 
         /**
          * Send data to a server
@@ -68,7 +81,18 @@ $(function () {
             /**
              * TODO send data to a server
              */
-            console.log(data);
+            $.post('api/send', data, function(res){
+                res = $.parseJSON(res);
+                if (res.status === "error") {
+                    $.each(res.fields, function(i, element){
+                       $('.'+element).addClass('error');
+                    });
+                } else {
+                    block.find('.ajax-form').hide();
+                    block.find('.success').show();
+                }
+            });
+
         }
         /**
          * Prevent default behavior
@@ -136,8 +160,9 @@ $(function () {
         hint: false,
         displayKey: 'value',
         source: citiesAdapter.ttAdapter()
-    }).on('typeahead:selected', function () {
+    }).on('typeahead:selected', function (event, datum) {
         $(this).removeClass('error');
+        $('.cities').data('value', datum.value);
         return true;
     });
 });

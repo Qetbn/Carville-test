@@ -23,41 +23,44 @@
 
 <!-- Add your site or application content here -->
 <div class="contactform">
-    <p class="hidden success">Спасибо за заказ</p>
     <form>
         <h1>Заказать сейчас</h1>
 
-        <div class="row">
-            <div class="col cols2">
-                <label>Выберите ваш город</label>
-                <input type="text" name="city" class="text cities required" autocomplete="off"/>
+        <p class="hidden success">Спасибо за заказ!</p>
+
+        <div class="ajax-form">
+            <div class="row">
+                <div class="col cols2">
+                    <label>Выберите ваш город</label>
+                    <input type="text" name="city" class="text cities" autocomplete="off"/>
+                </div>
+                <div class="col cols2">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" class="text cyrillic required"/>
+                </div>
             </div>
-            <div class="col cols2">
-                <label>Ваше имя</label>
-                <input type="text" name="name" class="text cyrillic required"/>
+            <div class="row">
+                <div class="col cols2">
+                    <label>Телефон</label>
+                    <input type="text" name="phone" class="text phone required"/>
+                </div>
+                <div class="col cols2">
+                    <label>Email</label>
+                    <input type="text" name="email" class="text email required"/>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col cols2">
-                <label>Телефон</label>
-                <input type="text" name="phone" class="text phone required"/>
+            <div class="row">
+                <div class="col cols1">
+                    <label>Дополнительная информация</label>
+                    <textarea name="message" class="textarea"></textarea>
+                </div>
             </div>
-            <div class="col cols2">
-                <label>Email</label>
-                <input type="text" name="email" class="text email required"/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col cols1">
-                <label>Дополнительная информация</label>
-                <textarea name="message" class="textarea"></textarea>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col cols1">
-                <button class="button">
-                    <span>Отправить</span>
-                </button>
+            <div class="row">
+                <div class="col cols1">
+                    <button class="button">
+                        <span>Отправить</span>
+                    </button>
+                </div>
             </div>
         </div>
     </form>

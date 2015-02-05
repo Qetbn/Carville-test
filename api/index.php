@@ -23,11 +23,11 @@ $app->get('/city/:name', function ($name) {
 /**
  * AJAX Form receiver & validator
  */
-$app->get('/send', function () use ($app, $validator) {
+$app->post('/send', function () use ($app, $validator) {
     /**
      * Receive HTTP Post vars
      */
-    $postVars = $app->request->get();
+    $postVars = $app->request->post();
     $city = isset($postVars['city']) ? $postVars['city'] : "";
     $name = isset($postVars['name']) ? $postVars['name'] : "";
     $phone = isset($postVars['phone']) ? $postVars['phone'] : "";
@@ -41,7 +41,7 @@ $app->get('/send', function () use ($app, $validator) {
      */
     $lengthValidator = $validator::string()->length(1, 32);
     $emailValidator = $validator::email();
-    $phoneValidator = $validator::phone();
+    $phoneValidator = $validator::regex('/^((\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/i');
     $cyrillicValidator = $validator::regex('/^[А-я ]+$/iu');
 
     /**
