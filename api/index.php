@@ -32,7 +32,7 @@ $app->post('/send', function () use ($app, $validator) {
     $name = isset($postVars['name']) ? $postVars['name'] : "";
     $phone = isset($postVars['phone']) ? $postVars['phone'] : "";
     $email = isset($postVars['email']) ? $postVars['email'] : "";
-    $message = isset($postVars['message']) ? $postVars['message'] : "";
+    $text = isset($postVars['message']) ? $postVars['message'] : "";
     $site = $_SERVER['HTTP_HOST'];
     $time = date("Y-m-d H:i:s");
 
@@ -74,6 +74,28 @@ $app->post('/send', function () use ($app, $validator) {
             'fields' => $errors
         ));
     } else {
+        $message = "
+        Отправлено сообщение с сайта #SITE#
+
+        Город: #CITY#
+        Имя: #NAME#
+        Телефон: #PHONE#
+        E-Mail: #EMAIL#
+        Сообщение: #MESSAGE#
+        Время отправки: #TIME#
+
+        ---
+
+        Сообщение отправлено автоматически.
+        ";
+        $message = str_replace("#SITE#", $site, $message);
+        $message = str_replace("#CITY#", $city, $message);
+        $message = str_replace("#NAME#", $name, $message);
+        $message = str_replace("#PHONE#", $phone, $message);
+        $message = str_replace("#EMAIL#", $email, $message);
+        $message = str_replace("#MESSAGE#", $text, $message);
+        $message = str_replace("#TIME#", $time, $message);
+        mail ('aleks.omelich@gmail.com', 'Заявка с сайта ' . $site , $message);
         sendResult(array(
             'status' => 'ok',
         ));
