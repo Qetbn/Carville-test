@@ -1,10 +1,5 @@
 $(function () {
     /**
-     * TODO
-     * 3. серверная валидация
-     * 4. отправка email
-     */
-    /**
      * Cache DOM
      */
     var block = $('.contactform');
@@ -55,11 +50,8 @@ $(function () {
          */
         var cities = block.find('.cities');
         if (cities.val().length < 1 && (typeof(cities.data('value')) === "undefined" || cities.data('value').length < 1)) {
-            console.log('city validated: false');
             cities.addClass('error');
             ready = false;
-        } else {
-            console.log('city validated: true');
         }
 
 
@@ -71,7 +63,6 @@ $(function () {
             email.addClass('error');
             ready = false;
         }
-        console.log(ready);
 
         /**
          * Send data to a server
