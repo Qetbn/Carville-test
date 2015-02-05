@@ -72,11 +72,11 @@ $(function () {
             /**
              * TODO send data to a server
              */
-            $.post('api/send', data, function(res){
+            $.post('api/send', data, function (res) {
                 res = $.parseJSON(res);
                 if (res.status === "error") {
-                    $.each(res.fields, function(i, element){
-                       $('.'+element).addClass('error');
+                    $.each(res.fields, function (i, element) {
+                        $('.' + element).addClass('error');
                     });
                 } else {
                     block.find('.ajax-form').hide();
@@ -146,9 +146,13 @@ $(function () {
         }
     });
     citiesAdapter.initialize();
-    block.find('.cities').typeahead(null, {
+    block.find('.cities').typeahead({
+        hint: false,
+        minLength: 2
+    }, {
         name: 'cities',
         hint: false,
+        minLength: 2,
         displayKey: 'value',
         source: citiesAdapter.ttAdapter()
     }).on('typeahead:selected', function (event, datum) {
