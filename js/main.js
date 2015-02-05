@@ -1,16 +1,13 @@
 $(function () {
     /**
      * TODO
-     * 1. валидация про потере фокуса у email
-     * 2. блок ваше имя некорректно реагирует на системные кнопки, стрелки и т.д.
      * 3. серверная валидация
      * 4. отправка email
      */
     /**
-     * Cache DOM and server URL
+     * Cache DOM
      */
-    var block = $('.contactform'),
-        api = '/api/controller.php';
+    var block = $('.contactform');
 
     if (typeof block === "undefined") return false;
     /**
@@ -22,7 +19,17 @@ $(function () {
      * Allow cyrillic chars and spaces
      */
     block.find('.cyrillic').keyup(function () {
+        // Allow: backspace, delete, tab, escape, enter and .
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
+                // Allow: Ctrl+A
+            (e.keyCode == 65 && e.ctrlKey === true) ||
+                // Allow: home, end, left, right, down, up
+            (e.keyCode >= 35 && e.keyCode <= 40)) {
+            // let it happen, don't do anything
+            return true;
+        }
         this.value = this.value.replace(/[^а-я ]/i, "");
+        return true;
     });
 
     /**
@@ -77,7 +84,7 @@ $(function () {
     var validateEmail = function (val) {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
         return pattern.test(val);
-    }
+    };
 
     /**
      * Remove error class on change
@@ -85,6 +92,17 @@ $(function () {
      */
     block.find('.required').on('change', function () {
         $(this).removeClass('error');
+        return true;
+    });
+
+    /**
+     * Validate e-mail on focusout
+     */
+    block.find('.email').on('focusout', function () {
+        var email = $(this);
+        if (validateEmail(email.val()) !== true) {
+            email.addClass('error');
+        }
         return true;
     });
 

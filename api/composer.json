@@ -10,6 +10,7 @@
         }
     ],
     "require": {
-        "slim/slim": "2.*"
+        "slim/slim": "2.*",
+        "respect/validation": "0.7.*"
     }
 }
